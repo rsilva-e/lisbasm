@@ -5,6 +5,10 @@ make
 gcc main.c libasm.a -o test
 gcc main.c libasm.a -o test -Wl,--no-warn-execstack   #sem avisos do gnu
 
+
+gcc -no-pie main.c libasm.a -o test  // NAO POSSO USAR
+
+
 # 3. Executar
 ./test
 

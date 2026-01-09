@@ -19,4 +19,5 @@ ft_strcpy:
         
     .done:
         mov byte[rdi+rax],0  
+        mov rax,rdi
         ret  ;retorna o rax

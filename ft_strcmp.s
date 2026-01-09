@@ -1,25 +1,33 @@
 
 global ft_strcmp 
-    section .text
+section .text
 
 ft_strcmp:
 
-    xor rax,rax
+    xor rcx,rcx
 
-    .loop:
+.loop:
 
-        mov al,byte[rdi+rax]
-        mov bl,byte[rsi+rax]
+    mov al,byte[rdi+rcx]
+    mov bl,byte[rsi+rcx]
+    
+    cmp al,bl
+    jne .diff
 
-        cmp al,0
-        je .done
-        cmp bl,0
-        je .done
+    test al,bl
+    je .equal
 
-        cmp al,bl
-        mov rax,(al-bl)
-        ret(al-bl)
 
-    .done:
-        xor rax,rax
+    inc rcx
+    jmp .loop
+
+
+    .diff:
+        movzx eax, al
+        movzx ebx, bl
+        sub eax,ebx
+        ret
+
+    .equal:
+        xor eax,eax
         ret

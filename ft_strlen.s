@@ -1,6 +1,4 @@
 
-
-
 global ft_strlen
     section .text
 

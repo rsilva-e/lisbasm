@@ -6,7 +6,7 @@
 #    By: rsilva-e <rsilva-e@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/08 15:02:49 by rsilva-e          #+#    #+#              #
-#    Updated: 2026/01/08 15:56:07 by rsilva-e         ###   ########.fr        #
+#    Updated: 2026/01/09 16:35:38 by rsilva-e         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,11 @@ NASMFLAGS	= -f elf64 -g
 RM			= rm -rf
 
 SRCS		=	ft_strlen.s \
-				ft_strcpy.s
+				ft_strcpy.s \
+				ft_strcmp.s \
+				ft_strdup.s \
+				ft_write.s	\
+				ft_read.s
 
 # BONUS_SRCS	=	ft_lstadd_back.c \
 
