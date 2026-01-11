@@ -13,18 +13,16 @@ ft_strdup:
     add rax,1
  
     mov rdi,rax ; argumento malloc
-    call malloc
+    call malloc wrt ..plt   ; ✅ compatível com PIE
+
     test rax,rax  ; return do malloc
     je .done
-
-
    
     mov rdi,rax ; 1 argumento ft_strcpy
     mov rsi,r12 ; 2 argumento ft_strcpy
     call ft_strcpy
 
     ret
-
 
 .done:
     xor rax,rax

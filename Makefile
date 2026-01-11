@@ -14,6 +14,8 @@ NAME		= libasm.a
 NASM		= nasm
 NASMFLAGS	= -f elf64 -g
 RM			= rm -rf
+MAIN = main.c
+TEST = test
 
 SRCS		=	ft_strlen.s \
 				ft_strcpy.s \
@@ -23,12 +25,13 @@ SRCS		=	ft_strlen.s \
 				ft_read.s
 
 BONUS_SRCS	=	ft_list_size.s \
+				ft_list_push_front.s
 
 OBJS = $(SRCS:.s=.o)
 			
 BONUS_OBJS = $(BONUS_SRCS:.s=.o)
 
-all: $(NAME)
+all: $(NAME) #$(TEST)
 
 %.o: %.s
 	$(NASM) $(NASMFLAGS)  $< -o $@
@@ -36,14 +39,28 @@ all: $(NAME)
 $(NAME): $(OBJS) $(BONUS_OBJS)
 	ar rc $(NAME) $(OBJS) $(BONUS_OBJS)
 
+$(TEST): $(NAME) $(MAIN) 
+	gcc -Wall -Wextra -Werror $(MAIN) -L. -lasm -o $(TEST)
+
 bonus: $(NAME)
 
 clean:
 	$(RM) $(OBJS) $(BONUS_OBJS)
 
 fclean: clean
-	$(RM) $(NAME)
+	$(RM) $(NAME) $(TEST)
 
 re: fclean all
 
 .PHONY: all clean fclean re
+
+
+
+
+
+
+
+
+
+
+

@@ -20,6 +20,9 @@ int main()
 {
     printf("\n-------- LISBASM ---------------- LISBASM ---------------- LISBASM --------\n");
     //------- FT_STRLEN --------------- FT_STRLEN --------------- FT_STRLEN --------
+   
+   
+   
     char *sequence = "O meu mundo";
     
     printf("\n-------- FT_STRLEN --------\n");
@@ -94,6 +97,42 @@ int main()
 
 
 
+    ft_read(-1, buffer, 99); // ler até 99 bytes do stdin
+    
+
+    ssize_t ret;
+
+    printf("=== Teste 1: leitura valida de stdin ===\n");
+    printf("Digite algo: ");
+    ret = ft_read(0, buffer, sizeof(buffer) - 1); // stdin = fd 0
+    if (ret >= 0)
+    {
+        buffer[ret] = '\0';
+        printf("ft_read leu %zd bytes: '%s'\n", ret, buffer);
+    }
+    else
+    {
+        printf("ft_read erro! errno = %d (%s)\n", errno, strerror(errno));
+    }
+
+    printf("\n=== Teste 2: fd invalido ===\n");
+    ret = ft_read(-1, buffer, sizeof(buffer));
+    if (ret == -1)
+        printf("fd invalido, ft_read retornou -1, errno = %d (%s)\n", errno, strerror(errno));
+    else
+        printf("ERRO: fd invalido retornou %zd\n", ret);
+
+    printf("\n=== Teste 3: ler 0 bytes ===\n");
+    ret = ft_read(0, buffer, 0);
+    if (ret >= 0)
+        printf("ft_read leu %zd bytes (esperado 0)\n", ret);
+    else
+        printf("ft_read erro inesperado! errno = %d (%s)\n", errno, strerror(errno));
+
+
+
+
+
 
     //------- BONUS --------------- BONUS --------------- BONUS --------
     printf("\n-------- BONUS --------\n");
@@ -103,26 +142,68 @@ int main()
     t_list *mundo = malloc(sizeof(t_list));
 
  
-    if (!ola && !mundo)
+    if (!ola || !mundo)
         return (1);
 
-    ola->data = "ola mundo";
+    ola->data = "ola mundo1";
     ola->next = mundo;
 
-    
-
-    ola->data = "Another world";
+    mundo->data = "Another world1";
     mundo->next = NULL;
 
-
+    char *data2 = "world2";
     
+    t_list *worlds = ola;       // ponteiro para o primeiro nó
+    t_list **worlds_ptr = &worlds; // ponteiro para ponteiro
+
 
     printf("\n-------- FT_LIST_SIZE --------\n");
     printf("A lista tem : %d\n", ft_list_size(ola));
+
+
+
+    printf("\n-------- FT_LIST_PUSH_FRONT --------\n");
+
+             
+
+   
+    ft_list_push_front(worlds_ptr,data2);
+    printf("Size Worlds was : %d\n", ft_list_size(worlds));
+
+    t_list *list = NULL;
+
+    ft_list_push_front(&list, "Hello");
+    printf("List size was : %d\n", ft_list_size(list));
+    ft_list_push_front(&list, "World");
+    printf("List size was : %d\n", ft_list_size(list));
+
+    while(list)
+    {
+        t_list *temp;
+
+
+        temp = list->next;
+
+        free(list);
+
+        list = temp;
+    }
+
+
+    while(worlds)
+    {
+        t_list *temp;
+
+
+        temp = worlds->next;
+
+        free(worlds);
+
+        worlds = temp;
+    }
    
 
-    free(ola);
-    free(mundo);
+    
 
     printf("\n-------- LISBASM ---------------- LISBASM ---------------- LISBASM --------\n");
 
