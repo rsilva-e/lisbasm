@@ -17,13 +17,26 @@
 #ifndef LIBASM_H
 #define LIBASM_H
 
+
+//-------MANDATORY---------------MANDATORY---------------MANDATORY--------
 size_t	ft_strlen(const char *s);
 char *ft_strcpy(char *dest, const char *src);
 int	ft_strcmp(const char *str1, const char *str2);
 char	*ft_strdup(const char *str);
-
 ssize_t ft_read(int fd, void *buf, size_t count);
 ssize_t ft_write(int fd, const void *buf, size_t count);
+
+
+//-------BONUS---------------BONUS---------------BONUS--------------------
+typedef struct s_list
+{
+    void *data;
+    struct s_list *next;
+} t_list;
+
+
+int ft_list_size(t_list *begin_list);
+void ft_list_remove_if(t_list **begin_list, void *data_ref, int (*cmp)(), void (*free_fct)(void *));
 
 
 #endif

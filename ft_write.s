@@ -9,4 +9,7 @@ ft_write:
 
     mov rax, 1  ; 1 representa o write no syscall
     syscall
+
+
     ret
+

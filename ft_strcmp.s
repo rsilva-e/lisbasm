@@ -14,7 +14,7 @@ ft_strcmp:
     cmp al,bl
     jne .diff
 
-    test al,bl
+    test al,bl ; al & bl
     je .equal
 
 

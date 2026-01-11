@@ -14,6 +14,8 @@
 #include "libasm.h"
 # include <string.h>
 
+
+
 int main()
 {
     printf("\n-------- LISBASM ---------------- LISBASM ---------------- LISBASM --------\n");
@@ -80,7 +82,9 @@ int main()
     
     n = ft_read(0, buffer, 99); // ler até 99 bytes do stdin
     if (n < 0) {
-        perror("Erro ao ler");
+       buffer[n] = '\0'; // termina a string
+    printf("Você digitou: %s\n", buffer);
+    printf("Bytes lidos: %zd\n", n);     perror("Erro ao ler");
         return 1;
     }
 
@@ -88,6 +92,37 @@ int main()
     printf("Você digitou: %s\n", buffer);
     printf("Bytes lidos: %zd\n", n);
 
+
+
+
+    //------- BONUS --------------- BONUS --------------- BONUS --------
+    printf("\n-------- BONUS --------\n");
+    
+
+    t_list *ola = malloc(sizeof(t_list));
+    t_list *mundo = malloc(sizeof(t_list));
+
+ 
+    if (!ola && !mundo)
+        return (1);
+
+    ola->data = "ola mundo";
+    ola->next = mundo;
+
+    
+
+    ola->data = "Another world";
+    mundo->next = NULL;
+
+
+    
+
+    printf("\n-------- FT_LIST_SIZE --------\n");
+    printf("A lista tem : %d\n", ft_list_size(ola));
+   
+
+    free(ola);
+    free(mundo);
 
     printf("\n-------- LISBASM ---------------- LISBASM ---------------- LISBASM --------\n");
 

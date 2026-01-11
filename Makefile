@@ -22,7 +22,7 @@ SRCS		=	ft_strlen.s \
 				ft_write.s	\
 				ft_read.s
 
-# BONUS_SRCS	=	ft_lstadd_back.c \
+BONUS_SRCS	=	ft_list_size.s \
 
 OBJS = $(SRCS:.s=.o)
 			
