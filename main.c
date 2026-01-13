@@ -6,7 +6,7 @@
 /*   By: rsilva-e <rsilva-e@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 15:02:37 by rsilva-e          #+#    #+#             */
-/*   Updated: 2026/01/09 16:48:30 by rsilva-e         ###   ########.fr       */
+/*   Updated: 2026/01/13 14:42:33 by rsilva-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,27 @@
 #include "libasm.h"
 # include <string.h>
 
+
+// Imprime os elementos da lista
+void print_list(t_list *list)
+{
+    while (list)
+    {
+        printf("%s -> ", (char *)list->data);
+        list = list->next;
+    }
+    printf("NULL\n");
+}
+
+
+// inserir no início de uma lista encadeada
+void list_push_front(t_list **begin_list, void *data) {
+    t_list *new = malloc(sizeof(t_list));
+    if (!new) return;
+    new->data = data;
+    new->next = *begin_list;
+    *begin_list = new;
+}
 
 
 int main()
@@ -97,7 +118,7 @@ int main()
 
 
 
-    ft_read(-1, buffer, 99); // ler até 99 bytes do stdin
+/*     ft_read(-1, buffer, 99); // ler até 99 bytes do stdin
     
 
     ssize_t ret;
@@ -129,7 +150,7 @@ int main()
     else
         printf("ft_read erro inesperado! errno = %d (%s)\n", errno, strerror(errno));
 
-
+ */
 
 
 
@@ -164,18 +185,59 @@ int main()
 
     printf("\n-------- FT_LIST_PUSH_FRONT --------\n");
 
-             
+    printf("=== TESTE PUSH FRONT ===\n");
+
+         
 
    
-    ft_list_push_front(worlds_ptr,data2);
+    list_push_front(worlds_ptr,data2);
     printf("Size Worlds was : %d\n", ft_list_size(worlds));
 
     t_list *list = NULL;
 
-    ft_list_push_front(&list, "Hello");
+
+    list_push_front(&list, strdup("Hello"));
+    list_push_front(&list, strdup("World"));
+    list_push_front(&list, strdup("Test"));
+    list_push_front(&list, strdup("World"));
+
+    printf("List size : %d\n", ft_list_size(list));
+    
+    
+    
+    /*     ft_list_push_front(&list, "Hello");
     printf("List size was : %d\n", ft_list_size(list));
     ft_list_push_front(&list, "World");
     printf("List size was : %d\n", ft_list_size(list));
+ */
+
+
+
+     printf("\n-------- FT_LIST_REMOVE_IF --------\n");
+
+             
+    printf("Lista antes da remoção:\n");
+    print_list(list);
+    printf("Tamanho: %d\n\n", ft_list_size(list));
+
+    printf("=== TESTE REMOVE_IF ===\n");
+    printf("Removendo 'World'...\n");
+    ft_list_remove_if(&list, "World", cmp_str, free_str);
+
+    printf("Lista depois da remoção:\n");
+    print_list(list);
+    printf("Tamanho: %d\n\n", ft_list_size(list)); 
+
+  /*   printf("Removendo 'Hello'...\n");
+    ft_list_remove_if(&list, "Hello", cmp_str, free_str);
+
+    printf("Lista final:\n");
+    print_list(list);
+    printf("Tamanho: %d\n\n", ft_list_size(list));
+
+    // Free remaining nodes
+    ft_list_remove_if(&list, "Test", cmp_str, free_str); */
+
 
     while(list)
     {

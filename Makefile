@@ -6,7 +6,7 @@
 #    By: rsilva-e <rsilva-e@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/08 15:02:49 by rsilva-e          #+#    #+#              #
-#    Updated: 2026/01/09 16:35:38 by rsilva-e         ###   ########.fr        #
+#    Updated: 2026/01/13 13:59:47 by rsilva-e         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,8 @@ SRCS		=	ft_strlen.s \
 				ft_read.s
 
 BONUS_SRCS	=	ft_list_size.s \
-				ft_list_push_front.s
+				ft_list_push_front.s \
+				ft_list_remove_if.s
 
 OBJS = $(SRCS:.s=.o)
 			
@@ -40,7 +41,7 @@ $(NAME): $(OBJS) $(BONUS_OBJS)
 	ar rc $(NAME) $(OBJS) $(BONUS_OBJS)
 
 $(TEST): $(NAME) $(MAIN) 
-	gcc -Wall -Wextra -Werror $(MAIN) -L. -lasm -o $(TEST)
+	gcc -Wall -Wextra -Werror -fPIE $(MAIN) -L. -lasm -o $(TEST)
 
 bonus: $(NAME)
 

@@ -6,7 +6,7 @@
 /*   By: rsilva-e <rsilva-e@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 15:04:10 by rsilva-e          #+#    #+#             */
-/*   Updated: 2026/01/09 16:25:30 by rsilva-e         ###   ########.fr       */
+/*   Updated: 2026/01/13 12:41:18 by rsilva-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,13 @@
 
 #ifndef LIBASM_H
 #define LIBASM_H
+
+
+
+
+
+
+
 
 
 //-------MANDATORY---------------MANDATORY---------------MANDATORY--------
@@ -35,6 +42,19 @@ typedef struct s_list
     void *data;
     struct s_list *next;
 } t_list;
+
+
+// Função de comparação para strings
+int cmp_str(void *data1, void *data2)
+{
+    return strcmp((char *)data1, (char *)data2);
+}
+
+// Função de free para strings
+void free_str(void *data)
+{
+    free(data);
+}
 
 void ft_list_push_front(t_list **begin_list, void *data);
 int ft_list_size(t_list *begin_list);
