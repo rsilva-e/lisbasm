@@ -22,44 +22,44 @@ extern free
 ; void ft_list_remove_if(t_list **begin_list, void *data_ref, int (*cmp)(), void (*free_fct)(void *));
 ;
 ; Registos de entrada:
-; rdi = begin_list
-; rsi = data_ref
+; rdi = **begin_list
+; rsi = *data_ref
 ; rdx = cmp
 ; rcx = free_fct
 ;
 ; Registos temporários:
-; 
+; --- Callee-saved (não-voláteis, sobrevivem a `call`) ---
+; rbx = *data_ref (rsi)
+; r12 = *current (ponteiro para o nó atual)
+; r13 = *previous (ponteiro para o nó anterior)
+; r14 = *tmp (ponteiro para o próximo nó, current->next)
+; r15 = **begin_list (rdi)
 ;
-; r12 = current list
-; rbx = data_ref
-
-; r13 = previous
-; r14 = tmp
-
-
-
-; 
+; --- Caller-saved (voláteis, destruídos por `call`) ---
+; rdx e rcx são guardados na stack porque as chamadas a `cmp` e `free` os destruiriam.
 ;----------------------------------------------
-
-
 
 
 ft_list_remove_if:
 
     ;push    rbp         ; Alinhamento e frame pointer (opcional, mas ajuda no debug)
+    ; Guardar todos os registos callee-saved que vamos modificar
     push    rbx
-    ;push   
     push    r12
     push    r13
     push    r14
     push    r15
 
-    ; mas estes argumentos podem ser destruidos em call function , nao pode ser rdx nem rcx called -saved
+    ; Salvar os argumentos que estão em registos caller-saved (voláteis).
+    ; Qualquer `call` pode destruir rdx e rcx, por isso guardamo-los na stack.
     push    rdx         ; cmp function
     push    rcx         ; free_fct function
     
- 
-    ; A pilha já está alinhada aqui (7 pushes + 1 ret = 64 bytes, multiplo de 16). Não precisamos de sub rsp, 8.
+    ; A pilha (stack) precisa de estar alinhada em 16 bytes antes de uma instrução `call`.
+    ; A `call` que chamou `ft_list_remove_if` empurrou 8 bytes (endereço de retorno).
+    ; Os 7 `push` que fizemos empurraram mais 7 * 8 = 56 bytes.
+    ; Total: 8 + 56 = 64 bytes. Como 64 é um múltiplo de 16, a pilha está corretamente alinhada
+    ; para as instruções `call` que faremos dentro desta função (para `cmp` e `free`).
 
     test rdi,rdi
     je .done_restore
@@ -136,5 +136,4 @@ ft_list_remove_if:
         pop     r13
         pop     r12
         pop     rbx
-        ;pop     rbp
         ret

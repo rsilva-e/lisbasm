@@ -6,34 +6,36 @@
 /*   By: rsilva-e <rsilva-e@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 15:02:37 by rsilva-e          #+#    #+#             */
-/*   Updated: 2026/01/13 14:42:33 by rsilva-e         ###   ########.fr       */
+/*   Updated: 2026/01/14 17:53:14 by rsilva-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "libasm.h"
-# include <string.h>
+#include <string.h>
 
-
-// Imprime os elementos da lista
 void print_list(t_list *list)
 {
     while (list)
     {
-        printf("%s -> ", (char *)list->data);
+        printf("%s->", (char *)list->data);
         list = list->next;
     }
     printf("NULL\n");
 }
 
+void free_list(t_list *list)
+{
+    t_list *temp;
 
-// inserir no início de uma lista encadeada
-void list_push_front(t_list **begin_list, void *data) {
-    t_list *new = malloc(sizeof(t_list));
-    if (!new) return;
-    new->data = data;
-    new->next = *begin_list;
-    *begin_list = new;
+    while(list)
+    { 
+        temp = list->next;
+        free(list->data);
+        free(list);
+
+        list = temp;
+    }
 }
 
 
@@ -156,116 +158,100 @@ int main()
 
 
     //------- BONUS --------------- BONUS --------------- BONUS --------
-    printf("\n-------- BONUS --------\n");
     
-
-    t_list *ola = malloc(sizeof(t_list));
-    t_list *mundo = malloc(sizeof(t_list));
-
- 
-    if (!ola || !mundo)
-        return (1);
-
-    ola->data = "ola mundo1";
-    ola->next = mundo;
-
-    mundo->data = "Another world1";
-    mundo->next = NULL;
-
-    char *data2 = "world2";
     
-    t_list *worlds = ola;       // ponteiro para o primeiro nó
-    t_list **worlds_ptr = &worlds; // ponteiro para ponteiro
+    printf("\n-------- BONUS ---------------- BONUS ---------------- BONUS -------------\n");
 
-
-    printf("\n-------- FT_LIST_SIZE --------\n");
-    printf("A lista tem : %d\n", ft_list_size(ola));
-
-
-
-    printf("\n-------- FT_LIST_PUSH_FRONT --------\n");
-
-    printf("=== TESTE PUSH FRONT ===\n");
-
-         
-
+    //printf("\n========== FT_LIST_PUSH_FRONT ================\n");
    
-    list_push_front(worlds_ptr,data2);
-    printf("Size Worlds was : %d\n", ft_list_size(worlds));
+    printf("\n-------- FT_LIST_PUSH_FRONT --------\n\n");
 
     t_list *list = NULL;
+    t_list *list2 = NULL;
+    t_list *list3 = NULL;
 
 
-    list_push_front(&list, strdup("Hello"));
-    list_push_front(&list, strdup("World"));
-    list_push_front(&list, strdup("Test"));
-    list_push_front(&list, strdup("World"));
-
-    printf("List size : %d\n", ft_list_size(list));
-    
-    
-    
-    /*     ft_list_push_front(&list, "Hello");
-    printf("List size was : %d\n", ft_list_size(list));
-    ft_list_push_front(&list, "World");
-    printf("List size was : %d\n", ft_list_size(list));
- */
-
-
-
-     printf("\n-------- FT_LIST_REMOVE_IF --------\n");
-
-             
-    printf("Lista antes da remoção:\n");
+    ft_list_push_front(&list, ft_strdup("Hello"));
     print_list(list);
-    printf("Tamanho: %d\n\n", ft_list_size(list));
+    ft_list_push_front(&list, ft_strdup("World"));
+    print_list(list);
+    ft_list_push_front(&list, ft_strdup("Test"));
+    print_list(list);
+    ft_list_push_front(&list, ft_strdup("World"));
+    print_list(list);
+    ft_list_push_front(&list, ft_strdup(""));
+    print_list(list);
+    ft_list_push_front(&list, ft_strdup("    "));
+    printf("\nThe first List:\n");
+    print_list(list);
 
-    printf("=== TESTE REMOVE_IF ===\n");
-    printf("Removendo 'World'...\n");
+    
+    printf("\nThe Second List:\n");
+    ft_list_push_front(&list2,ft_strdup("World"));
+    ft_list_push_front(&list2,ft_strdup("Another"));
+    ft_list_push_front(&list2,ft_strdup("Another"));
+    ft_list_push_front(&list2,ft_strdup("Other"));
+    ft_list_push_front(&list2,ft_strdup("Amazing"));
+    ft_list_push_front(&list2,ft_strdup("Another"));
+    ft_list_push_front(&list2,ft_strdup("Special"));
+    print_list(list2);
+
+
+    printf("\nThe Thrid List:\n");
+    ft_list_push_front(&list3,ft_strdup("Y"));
+    ft_list_push_front(&list3,ft_strdup("T"));
+    ft_list_push_front(&list3,ft_strdup("B"));
+    ft_list_push_front(&list3,ft_strdup("A"));
+    ft_list_push_front(&list3,ft_strdup("C"));
+    ft_list_push_front(&list3,ft_strdup("D"));
+    print_list(list3);
+
+
+    //printf("\n========== FT_LIST_SIZE ================\n");
+
+    printf("\n-------- FT_LIST_SIZE --------------\n\n");
+    printf("The first list is of size : %d\n", ft_list_size(list));
+    printf("The second list is of size : %d\n", ft_list_size(list2));
+
+
+
+    printf("\n-------- FT_LIST_SORT--------------\n\n");
+
+    ft_list_sort(&list,cmp_str);
+    printf("\nThe first List:\n");
+    print_list(list);
+
+    ft_list_sort(&list2,cmp_str);
+    printf("\nThe Second List:\n");
+    print_list(list2);
+
+    ft_list_sort(&list3,cmp_str);
+    printf("\nThe Thrid List:\n");
+    print_list(list3);
+    
+
+
+
+    
+    //printf("\n========== FT_LIST_REMOVE_IF ================\n");
+    printf("\n-------- FT_LIST_REMOVE_IF --------\n\n");
+
+    printf("First List - remove 'World'...\n");
     ft_list_remove_if(&list, "World", cmp_str, free_str);
-
-    printf("Lista depois da remoção:\n");
     print_list(list);
     printf("Tamanho: %d\n\n", ft_list_size(list)); 
 
-  /*   printf("Removendo 'Hello'...\n");
-    ft_list_remove_if(&list, "Hello", cmp_str, free_str);
 
-    printf("Lista final:\n");
-    print_list(list);
-    printf("Tamanho: %d\n\n", ft_list_size(list));
-
-    // Free remaining nodes
-    ft_list_remove_if(&list, "Test", cmp_str, free_str); */
+    printf("Second List - remove 'Another'...\n");
+    ft_list_remove_if(&list2, "Another", cmp_str, free_str);
+    print_list(list2);
+    printf("Tamanho: %d\n\n", ft_list_size(list2)); 
 
 
-    while(list)
-    {
-        t_list *temp;
-
-
-        temp = list->next;
-
-        free(list);
-
-        list = temp;
-    }
-
-
-    while(worlds)
-    {
-        t_list *temp;
-
-
-        temp = worlds->next;
-
-        free(worlds);
-
-        worlds = temp;
-    }
+    free_list(list);
+    free_list(list2);
    
 
-    
 
     printf("\n-------- LISBASM ---------------- LISBASM ---------------- LISBASM --------\n");
 

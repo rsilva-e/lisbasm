@@ -3,20 +3,17 @@ global ft_strcmp
 section .text
 
 ft_strcmp:
-
     xor rcx,rcx
 
 .loop:
-
     mov al,byte[rdi+rcx]
-    mov bl,byte[rsi+rcx]
+    mov dl,byte[rsi+rcx]    ; Usamos dl (parte do rdx) que é volátil/rascunho
     
-    cmp al,bl
+    cmp al, dl
     jne .diff
 
-    test al,bl ; al & bl
-    je .equal
-
+    cmp al, 0       ; A forma correta de verificar o fim da string.
+    je .equal       ; Se al é 0, e sabemos que al==bl, então ambas as strings terminaram.
 
     inc rcx
     jmp .loop
@@ -24,8 +21,8 @@ ft_strcmp:
 
     .diff:
         movzx eax, al
-        movzx ebx, bl
-        sub eax,ebx
+        movzx edx, dl
+        sub eax,edx
         ret
 
     .equal:
