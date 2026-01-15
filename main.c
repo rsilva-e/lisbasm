@@ -6,7 +6,7 @@
 /*   By: rsilva-e <rsilva-e@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 15:02:37 by rsilva-e          #+#    #+#             */
-/*   Updated: 2026/01/14 17:53:14 by rsilva-e         ###   ########.fr       */
+/*   Updated: 2026/01/15 22:47:18 by rsilva-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,6 +163,18 @@ int main()
     printf("\n-------- BONUS ---------------- BONUS ---------------- BONUS -------------\n");
 
     //printf("\n========== FT_LIST_PUSH_FRONT ================\n");
+
+
+    printf("\n-------- FT_ATOI_BASE --------\n\n");
+
+    
+    printf("%d",ft_atoi_base("   -101", "01"));        // -5 binary
+    ft_atoi_base("7F", "0123456789ABCDEF"); // 127 Hexadecimal 
+    ft_atoi_base("42", "0123456789");     // 42 decimal
+    ft_atoi_base("42", "0");              // 0 (base inválida)
+
+    
+    
    
     printf("\n-------- FT_LIST_PUSH_FRONT --------\n\n");
 

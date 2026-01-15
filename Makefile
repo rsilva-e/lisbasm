@@ -6,7 +6,7 @@
 #    By: rsilva-e <rsilva-e@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/08 15:02:49 by rsilva-e          #+#    #+#              #
-#    Updated: 2026/01/14 16:39:28 by rsilva-e         ###   ########.fr        #
+#    Updated: 2026/01/15 22:48:19 by rsilva-e         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,8 @@ SRCS		=	ft_strlen.s \
 				ft_write.s	\
 				ft_read.s
 
-BONUS_SRCS	=	ft_list_size.s \
+BONUS_SRCS	=	ft_atoi_base.s \
+				ft_list_size.s \
 				ft_list_push_front.s \
 				ft_list_sort.s \
 				ft_list_remove_if.s
