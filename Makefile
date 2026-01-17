@@ -43,7 +43,7 @@ $(NAME): $(OBJS) $(BONUS_OBJS)
 	ar rc $(NAME) $(OBJS) $(BONUS_OBJS)
 
 $(TEST): $(NAME) $(MAIN) 
-	gcc -Wall -Wextra -Werror -fPIE $(MAIN) -L. -lasm -o $(TEST)
+	gcc -Wall -Wextra -Werror  $(MAIN) -L. -lasm -o $(TEST)
 
 bonus: $(NAME)
 

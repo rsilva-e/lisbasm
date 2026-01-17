@@ -6,18 +6,19 @@ global ft_strcpy
 
 ft_strcpy:
 
+    xor rcx,rcx  ; contador 
     xor rax,rax
 
     .loop:
-        mov bl,byte[rsi+rax]
-        cmp bl,0
+        mov al,byte[rsi+rcx]
+        cmp al,0
         je .done
 
-        mov byte[rdi+rax],bl
-        inc rax
+        mov byte[rdi+rcx],al
+        inc rcx
         jmp .loop
         
     .done:
-        mov byte[rdi+rax],0  
+        mov byte[rdi+rcx],0  
         mov rax,rdi
-        ret  ;retorna o rax
+        ret  ;retorna o rax -> *dest
