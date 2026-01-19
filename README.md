@@ -1,16 +1,17 @@
-# 1. Compila Assembly e gera libasm.a
+# 1. Compile Assembly and generate libasm.a
 make
 
-# 2. Compilar main.c e linkar com libasm.a
+# 2. Compile main.c and link with libasm.a
 gcc main.c libasm.a -o test
 
-# 3. Executar
+# 3. Run
 ./test
 
 
-| Assembly    | C equivalente        | Exemplo em C                      |
+
+| Assembly    | C equivalent         | Example in C                      |
 | ----------- | -------------------- | --------------------------------- |
-| `cmp a, b`  | `a - b` (comparação) | `if (a == b)`                     |
+| `cmp a, b`  | `a - b` (comparison) | `if (a == b)`                     |
 | `je label`  | `==`                 | `if (a == b)`                     |
 | `jne label` | `!=`                 | `if (a != b)`                     |
 | `jb label`  | `<` (unsigned)       | `if ((unsigned)a < (unsigned)b)`  |
