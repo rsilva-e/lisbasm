@@ -6,7 +6,7 @@
 /*   By: rsilva-e <rsilva-e@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 15:02:37 by rsilva-e          #+#    #+#             */
-/*   Updated: 2026/01/16 17:54:07 by rsilva-e         ###   ########.fr       */
+/*   Updated: 2026/01/19 00:45:16 by rsilva-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -246,7 +246,7 @@ int main()
     big[1023] = '\0';
 
 
-        // 1️⃣ Normal write
+    // 1️⃣ Normal write
     ft_write(1, "Hello World!\n", 13);
     write(1, "Hello World!\n", 13);
 
