@@ -1,29 +1,44 @@
+; -----------------------------------------------------------------------------
+; Duplicates a string.
+;
+; char	*ft_strdup(const char *str);
+; 
+; Arguments / Registers used:
+; rdi = *str
+; r12 = rdi
+; rax = return pointer of string
+; 
+; -----------------------------------------------------------------------------
+
 global ft_strdup
 extern ft_strcpy
 extern ft_strlen
 extern malloc
 
-
 section .text
 ft_strdup:
 
-    mov r12,rdi ; usar um registor que nao e destruido por chamda de funcoes
+    push r12                        ; perseve r12
+    mov r12,rdi                     ; r12 = rdi
 
-    call ft_strlen
-    add rax,1
+    call ft_strlen                  ; get lenght of string
+    add rax,1                       ; add 1 for null terminator
  
-    mov rdi,rax ; argumento malloc
-    call malloc wrt ..plt   ; ✅ compatível com PIE
+    mov rdi,rax                     ; rdi = rax argument for malloc
+    call malloc wrt ..plt           
 
-    test rax,rax  ; return do malloc
+    test rax,rax                    ; if malloc fail (rax == 0)
     je .done
    
-    mov rdi,rax ; 1 argumento ft_strcpy
-    mov rsi,r12 ; 2 argumento ft_strcpy
+
+    mov rdi, rax                    ; first argument of ft_strcpy (destination)
+    mov rsi, r12                    ; second argument of ft_strcpy (source)
     call ft_strcpy
 
+    pop r12                         
     ret
 
-.done:
-    xor rax,rax
+.done:                              ; return 0 
+    xor rax,rax                     
+    pop r12
     ret

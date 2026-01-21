@@ -1,3 +1,15 @@
+; -----------------------------------------------------------------------------
+; Compare two strings, and return the difference between the first mismatched characters
+;
+; int	ft_strcmp(const char *str1, const char *str2);
+; 
+; Arguments / Registers used :
+; rdi = *str1
+; rsi = *str2
+; rcx = counter (index i)
+; rax = return value 
+;
+; -----------------------------------------------------------------------------
 
 global ft_strcmp 
 section .text
@@ -5,24 +17,23 @@ section .text
 ft_strcmp:
     xor rcx,rcx
 
-.loop:
-    mov al,byte[rdi+rcx]
-    mov dl,byte[rsi+rcx]    ; Usamos dl (parte do rdx) que é volátil/rascunho
-    
-    cmp al, dl
+.loop:                          ; Load 1 byte from each strings
+    mov al,byte[rdi+rcx]        ; str1[i]
+    mov dl,byte[rsi+rcx]        ; str2[i]  
+                                ; str1[i] == str2[i] 
+    cmp al, dl                  
     jne .diff
-
-    cmp al, 0       ; A forma correta de verificar o fim da string.
-    je .equal       ; Se al é 0, e sabemos que al==bl, então ambas as strings terminaram.
+                                ; str1[i] != str2[i] 
+    cmp al, 0                   ; str1[1] == NULL
+    je .equal                   
 
     inc rcx
     jmp .loop
 
-
-    .diff:
+    .diff:                      ; return str1[i] - str2[i] (32-bit)
         movzx eax, al
         movzx edx, dl
-        sub eax,edx
+        sub eax,edx             
         ret
 
     .equal:

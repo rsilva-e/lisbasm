@@ -1,18 +1,27 @@
+; -----------------------------------------------------------------------------
+; Counts the number of characters in a string.
+;
+; size_t	ft_strlen(const char *s);
+; 
+; Arguments / Registers used:
+; rdi = *s
+; rax = return value (lenght)
+;
+; -----------------------------------------------------------------------------
 
 global ft_strlen
     section .text
 
 ft_strlen:
 
-    xor rax,rax
+    xor rax,rax             ; rax = 0 (lenght)
 
     .loop:
-        cmp byte[rdi],0 ; if(buf[rax] == '\0')
+        cmp byte[rdi],0     ; Compare current byte with null terminator
         je .done
-        inc rax
-        inc rdi
-        jmp .loop  ;retorna para o inicio do loop sem verificação
+        inc rax             ; rax++ 
+        inc rdi             ; rdi++
+        jmp .loop  
 
     .done:
-        ret  ;retorna o rax
-
+        ret                 ; return rax (string length)

@@ -24,3 +24,9 @@ gcc main.c libasm.a -o test
 | `jge label` | `>=` (signed)        | `if (a >= b)`                     |
 
 
+
+;| Tipo de retorno em C | Registo correto |
+;| -------------------- | --------------- |
+;| `int` / `int32_t`    | `eax`           |
+;| `long` / ponteiro    | `rax`           |
+;| `char` / `short`     | `al` / `ax`     |
