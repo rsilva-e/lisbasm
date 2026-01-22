@@ -6,8 +6,9 @@
 ; Arguments / Registers used:
 ; rdi = fd
 ; rsi = buf
-; r = count
+; rdx = count
 ; rax = return value (number of bytes written, or -1 on error)
+; r12 = store error
 ; -----------------------------------------------------------------------------
 
 global ft_write
@@ -32,7 +33,7 @@ ft_write:
         
         call __errno_location wrt ..plt
 
-        mov [rax],r12   ; store error number at errno
+        mov [rax],r12         ; store error number at errno
         mov rax , -1
         
         pop r12

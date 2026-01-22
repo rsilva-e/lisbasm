@@ -6,7 +6,7 @@
 #    By: rsilva-e <rsilva-e@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/08 15:02:49 by rsilva-e          #+#    #+#              #
-#    Updated: 2026/01/15 22:48:19 by rsilva-e         ###   ########.fr        #
+#    Updated: 2026/01/22 23:35:27 by rsilva-e         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,21 +14,25 @@ NAME		= libasm.a
 NASM		= nasm
 NASMFLAGS	= -f elf64 -g
 RM			= rm -rf
-MAIN = main.c
+
 TEST = test
 
-SRCS		=	ft_strlen.s \
-				ft_strcpy.s \
-				ft_strcmp.s \
-				ft_strdup.s \
-				ft_write.s	\
-				ft_read.s
+MAIN = main.c \
+	   mandatory/mandatory_test.c
 
-BONUS_SRCS	=	ft_atoi_base.s \
-				ft_list_size.s \
-				ft_list_push_front.s \
-				ft_list_sort.s \
-				ft_list_remove_if.s
+
+SRCS		=	mandatory/ft_strlen.s \
+				mandatory/ft_strcpy.s \
+				mandatory/ft_strcmp.s \
+				mandatory/ft_strdup.s \
+				mandatory/ft_write.s	\
+				mandatory/ft_read.s
+
+BONUS_SRCS	=	bonus/ft_atoi_base.s \
+				bonus/ft_list_size.s \
+				bonus/ft_list_push_front.s \
+				bonus/ft_list_sort.s \
+				bonus/ft_list_remove_if.s
 
 OBJS = $(SRCS:.s=.o)
 			

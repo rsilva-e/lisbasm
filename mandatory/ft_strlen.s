@@ -14,14 +14,13 @@ global ft_strlen
 
 ft_strlen:
 
-    xor rax,rax             ; rax = 0 (lenght)
+    xor rax,rax                   ; rax = 0 (lenght)
 
     .loop:
-        cmp byte[rdi],0     ; Compare current byte with null terminator
+        cmp byte[rdi + rax],0     ; Compare current byte with null terminator
         je .done
-        inc rax             ; rax++ 
-        inc rdi             ; rdi++
+        inc rax
         jmp .loop  
 
     .done:
-        ret                 ; return rax (string length)
+        ret                       ; return rax (string length)

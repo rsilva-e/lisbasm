@@ -12,12 +12,10 @@
 ; r14 = *begin_list
 ; -----------------------------------------------------------------------------
 
-
-extern malloc
-
 global ft_list_push_front
 section .text
 
+extern malloc
 
 ft_list_push_front:
 
@@ -32,7 +30,7 @@ ft_list_push_front:
     mov r13,rsi  
 
     mov rdi,16                      ; size of t_list (2 pointers: data + next)
-    call malloc wrt ..plt           ; malloc compatível com PIE - endereco relativo (PLT - Procedure Linkage Table)
+    call malloc wrt ..plt           ; malloc (PIE) - called via relative address in PLT
     test rax,rax
     je .done
 
@@ -42,8 +40,8 @@ ft_list_push_front:
     mov [r12], rax                  ; *begin_list = new node
 
 
-    .done:
-        pop r14                     ; restore registers 
+    .done:                          ; restore registers 
+        pop r14                     
         pop r13
         pop r12
         ret 

@@ -8,6 +8,7 @@
 ; rsi = buf
 ; rdx = count
 ; rax = return value (number of bytes read, or -1 on error)
+; r12 = store error
 ; -----------------------------------------------------------------------------
 
 global ft_read
