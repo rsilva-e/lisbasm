@@ -20,8 +20,6 @@ void test_ft_strlen()
     char str2[] = "";
     char str3[] = "1234567";
     char str4[] = "!@#$%^&*()";
-    
-    
 
     printf("The sentence:[%s]\n", str1);
     printf("ft_strlen: %lu\n", ft_strlen(str1));
@@ -38,6 +36,7 @@ void test_ft_strlen()
     printf("The sentence:[%s]\n", str4);
     printf("ft_strlen: %lu\n", ft_strlen(str4));
     printf("strlen   : %lu\n\n", strlen(str4));
+
 }
 
 
@@ -86,48 +85,62 @@ void test_ft_strcmp()
 {
     //------- FT_STRCMP --------------- FT_STRCMP--------------- FT_STRCMP --------
     printf("\n-------- FT_STRCMP --------\n\n");
-    /* 	printf("ft_strcmp1: %d\n",ft_strcmp("-AA","-A1"));
-        printf("strcmp1: %d\n",strcmp("-AA","-A1"));
+
+    {
+    char str1[] = "-AAddd";
+    char str2[] = "-A1";
+    // Different strings
+    printf("ft_strcmp1: %d\n", ft_strcmp(str1, str2));
+    printf("strcmp1   : %d\n\n", strcmp(str1, str2));
+    }
     
+    {
+    // 2.Equal strings
+    char str1[] = "A";
+    char str2[] = "A";
+    printf("ft_strcmp3: %d\n", ft_strcmp(str1, str2));
+    printf("strcmp3   : %d\n\n", strcmp(str1, str2));
+    }
     
-        printf("ft_strcmp2: %d\n",ft_strcmp("A","AB"));
-        printf("strcmp2: %d\n",strcmp("A","AB"));
+    {
+    // 3.Empty strings
+    char str1[] = "";
+    char str2[] = "";
+    printf("ft_strcmp4: %d\n", ft_strcmp(str1, str2));
+    printf("strcmp4   : %d\n\n", strcmp(str1,str2));
+    }
     
-        printf("ft_strcmp3: %d\n",ft_strcmp("A","A"));
-        printf("strcmp3: %d\n",strcmp("A","A"));
-     */
-    
-        
-    
-        // Different strings
-        printf("ft_strcmp1: %d\n", ft_strcmp("-AAddd", "-A1"));
-        printf("strcmp1   : %d\n", strcmp("-AAdddd", "-A1"));
-    
-        // 2.Equal strings
-        printf("ft_strcmp3: %d\n", ft_strcmp("A", "A"));
-        printf("strcmp3   : %d\n", strcmp("A", "A"));
-    
-        // 3.Empty strings
-        printf("ft_strcmp4: %d\n", ft_strcmp("", ""));
-        printf("strcmp4   : %d\n", strcmp("", ""));
-    
-        // 4.Empty and non-empty
-        printf("ft_strcmp5: %d\n", ft_strcmp("", "abc"));
-        printf("strcmp5   : %d\n", strcmp("", "abc"));
-    
-        // 5.Non-empty and empty
-        printf("ft_strcmp6: %d\n", ft_strcmp("abc", ""));
-        printf("strcmp6   : %d\n", strcmp("abc", ""));
-    
-        // 6.Numbers inside strings
-        printf("ft_strcmp8: %d\n", ft_strcmp("123", "124"));
-        printf("strcmp8   : %d\n", strcmp("123", "124"));
-    
-        // 7.Special characters
-        printf("ft_strcmp9: %d\n", ft_strcmp("!@#", "!@!"));
-        printf("strcmp9   : %d\n", strcmp("!@#", "!@!"));
-    
-     
+    {
+    // 4.Empty and non-empty
+    char str1[] = "";
+    char str2[] = "abc";
+    printf("ft_strcmp5: %d\n", ft_strcmp(str1, str2));
+    printf("strcmp5   : %d\n\n", strcmp(str1, str2));
+    }
+
+    {
+    // 5.Non-empty and empty
+    char str1[] = "abc";
+    char str2[] = "";
+    printf("ft_strcmp6: %d\n", ft_strcmp(str1, str2));
+    printf("strcmp6   : %d\n\n", strcmp(str1, str2));
+    }
+
+    {
+    // 6.Numbers inside strings
+    char str1[] = "123";
+    char str2[] = "124";
+    printf("ft_strcmp8: %d\n", ft_strcmp(str1, str2));
+    printf("strcmp8   : %d\n\n", strcmp(str1, str2));
+    }
+
+    {
+    // 7.Special characters
+    char str1[] = "!@#";
+    char str2[] = "!@!";
+    printf("ft_strcmp9: %d\n", ft_strcmp(str1, str2));
+    printf("strcmp9   : %d\n\n", strcmp(str1, str2));
+    }
 }
 
 
@@ -154,7 +167,7 @@ void test_ft_strdup()
         char *str = ft_strdup(s);
 
         printf("2. Original (empty): \"%s\" | Duplicate: \"%s\"\n", s, str);
-        printf("equal content: %s\n", ft_strcmp(s, str) == 0 ? "OK" : "KO");
+        printf("equal content: %s\n\n", ft_strcmp(s, str) == 0 ? "OK" : "KO");
 
         free(str);
     }
@@ -165,7 +178,7 @@ void test_ft_strdup()
         char *str = ft_strdup(s);
 
         printf("3. Original: %s | Duplicate: %s\n", s, str);
-        printf("equal content: %s\n", ft_strcmp(s, str) == 0 ? "OK" : "KO");
+        printf("equal content: %s\n\n", ft_strcmp(s, str) == 0 ? "OK" : "KO");
 
         free(str);
     }
@@ -176,7 +189,7 @@ void test_ft_strdup()
         char *str = ft_strdup(s);
 
         printf("4. Original: %s | Duplicate: %s\n", s, str);
-        printf("equal content: %s\n", ft_strcmp(s, str) == 0 ? "OK" : "KO");
+        printf("equal content: %s\n\n", ft_strcmp(s, str) == 0 ? "OK" : "KO");
 
         free(str);
     }
@@ -190,7 +203,7 @@ void test_ft_strdup()
         char *str = ft_strdup(s);
 
         printf("5. Long string length: %zu\n", strlen(str));
-        printf("equal content: %s\n", ft_strcmp(s, str) == 0 ? "OK" : "KO");
+        printf("equal content: %s\n\n", ft_strcmp(s, str) == 0 ? "OK" : "KO");
 
         free(str);
     }
@@ -213,14 +226,9 @@ void test_ft_strdup()
 void test_ft_write()
 {
     //------- FT_WRITE --------------- FT_WRITE--------------- FT_WRITE --------
-   
     printf("\n-------- FT_WRITE --------\n\n");
 
-    //ft_write(1, "Hello World!\n\n", 13);
-    //write(1, "Hello World!\n\n", 13);
-
-
-        char big[1024];
+    char big[1024];
     for (int i = 0; i < 1023; i++)
         big[i] = 'A' + (i % 26);
     big[1023] = '\0';
@@ -253,10 +261,10 @@ void test_ft_write()
     ssize_t ret2 = write(-1, "Test invalid fd\n", 16);
     printf("ft_write return: %ld | write return: %ld\n", ret1, ret2);
 
-/*     // 7️⃣ Binary data (non-printable)
+    // 7️⃣ Binary data (non-printable)
     char bin[5] = {0x00, 0x01, 0xFF, 0x7F, '\n'};
     ft_write(1, bin, 5);
-    write(1, bin, 5); */
+    write(1, bin, 5); 
 
 }
 
@@ -264,60 +272,34 @@ void test_ft_write()
 void test_ft_read()
 {
     //------- FT_READ --------------- FT_READ--------------- FT_READ --------
-    /*printf("\n-------- FT_WRITE --------\n\n");
+    
+    printf("\n-------- FT_READ --------\n\n");
     char buffer[100];
     ssize_t n;
 
-    printf("\n-------- FT_READ --------\n\n");
-    ft_write(1, "Digita Algo->\n", 13);
-    
-    n = ft_read(0, buffer, 99); // ler até 99 bytes do stdin
-    if (n < 0) 
+    printf("=== Test 1: valid stdin read ===\n");
+    ft_write(1, "Write something ->\n", 18);
+  
+    n = ft_read(0, buffer, sizeof(buffer)); // stdin = fd 0
+    if (n >= 0)
     {
-        buffer[n] = '\0'; // termina a string
-        printf("Você digitou:%s\n", buffer);
-        printf("Bytes lidos:%zd\n", n);     
-        perror("Erro ao ler");
-        return 1;
-    }
-
-    buffer[n] = '\0'; // termina a string
-    printf("Você digitou->%s", buffer);
-    printf("Bytes lidos->%zd\n", n); */
-
-
-
-/*ft_read(-1, buffer, 99); // ler até 99 bytes do stdin
-    
-
-    ssize_t ret;
-
-    printf("=== Teste 1: leitura valida de stdin ===\n");
-    printf("Digite algo: ");
-    ret = ft_read(0, buffer, sizeof(buffer) - 1); // stdin = fd 0
-    if (ret >= 0)
-    {
-        buffer[ret] = '\0';
-        printf("ft_read leu %zd bytes: '%s'\n", ret, buffer);
+        buffer[n] = '\0';
+        printf("ft_read read %zd bytes ->%s", n, buffer);
     }
     else
-    {
-        printf("ft_read erro! errno = %d (%s)\n", errno, strerror(errno));
-    }
+        perror("Error");
 
-    printf("\n=== Teste 2: fd invalido ===\n");
-    ret = ft_read(-1, buffer, sizeof(buffer));
-    if (ret == -1)
-        printf("fd invalido, ft_read retornou -1, errno = %d (%s)\n", errno, strerror(errno));
+    printf("\n=== Test 2: invalid fd ===\n");
+    n = ft_read(-1, buffer, sizeof(buffer));
+    if (n == -1)
+        printf("invalid fd, ft_read returned -1, errno = %d (%s)\n", errno, strerror(errno));
     else
-        printf("ERRO: fd invalido retornou %zd\n", ret);
+        perror("Error");
 
-    printf("\n=== Teste 3: ler 0 bytes ===\n");
-    ret = ft_read(0, buffer, 0);
-    if (ret >= 0)
-        printf("ft_read leu %zd bytes (esperado 0)\n", ret);
+    printf("\n=== Test 3: read 0 bytes ===\n");
+    n = ft_read(0, buffer, 0);
+    if (n >= 0)
+        printf("ft_read read %zd bytes (expected 0)\n", n);
     else
-        printf("ft_read erro inesperado! errno = %d (%s)\n", errno, strerror(errno));
-
- */
+        perror("Error");
 }

@@ -17,6 +17,8 @@ ft_strlen:
     xor rax,rax                   ; rax = 0 (lenght)
 
     .loop:
+        cmp rdi,0
+        je .done
         cmp byte[rdi + rax],0     ; Compare current byte with null terminator
         je .done
         inc rax

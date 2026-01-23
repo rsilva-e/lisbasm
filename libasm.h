@@ -45,15 +45,9 @@ typedef struct s_list
     struct s_list *next;
 } t_list;
 
-int cmp_str(void *data1, void *data2)
-{
-    return ft_strcmp((char *)data1, (char *)data2);
-}
-
-void free_str(void *data)
-{
-    free(data);
-}
+//void free_str(void *data);
+//int cmp_str(void *data1, void *data2);
+void print_list(t_list *list);
 
 int ft_atoi_base(char *str, char *base);
 void ft_list_push_front(t_list **begin_list, void *data);
@@ -61,5 +55,9 @@ int ft_list_size(t_list *begin_list);
 void ft_list_sort(t_list **begin_list, int (*cmp)());
 void ft_list_remove_if(t_list **begin_list, void *data_ref, int (*cmp)(), void (*free_fct)(void *));
 
-
+void test_ft_atoi_base();
+void test_ft_list_push_front(t_list **list,t_list **list2,t_list **list3);
+void test_ft_list_size(t_list **list,t_list **list2,t_list **list3);
+void test_ft_list_sort(t_list **list,t_list **list2,t_list **list3);
+void test_ft_list_remove_if(t_list **list,t_list **list2,t_list **list3);
 #endif
