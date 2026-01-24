@@ -1,13 +1,3 @@
-# 1. Compile Assembly and generate libasm.a
-make
-
-# 2. Compile main.c and link with libasm.a
-gcc main.c libasm.a -o test
-
-# 3. Run
-./test
-
-
 
 | Assembly    | C equivalent         | Example in C                      |
 | ----------- | -------------------- | --------------------------------- |

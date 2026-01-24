@@ -36,7 +36,6 @@ void free_list(t_list *list)
     }
 }
 
-
 int main()
 {
     printf("\n-------- LISBASM ---------------- LISBASM ---------------- LISBASM --------\n");

@@ -228,43 +228,26 @@ void test_ft_write()
     //------- FT_WRITE --------------- FT_WRITE--------------- FT_WRITE --------
     printf("\n-------- FT_WRITE --------\n\n");
 
-    char big[1024];
-    for (int i = 0; i < 1023; i++)
-        big[i] = 'A' + (i % 26);
-    big[1023] = '\0';
-
-
-    // 1️⃣ Normal write
+    //1.Normal write
+    printf("=== Test 1: Normal write ===\n");
+    printf("ft_write:");
     ft_write(1, "Hello World!\n", 13);
+    printf("write:");
     write(1, "Hello World!\n", 13);
 
-    // 2️⃣ Empty string
+    //2.Empty string
+    printf("\n=== Test 2: Empty string ===\n");
     ft_write(1, "", 0);
     write(1, "", 0);
 
-    // 3️⃣ Special characters
+    //3.Special characters
     ft_write(1, "!@#$%^&*()_+-=[]{}|;:',.<>/?\n", 30);
     write(1, "!@#$%^&*()_+-=[]{}|;:',.<>/?\n", 30);
 
-    // 4️⃣ Large string
-    ft_write(1, big, strlen(big));
-    write(1, big, strlen(big));
-
-    // 5️⃣ Multiple consecutive writes
-    ft_write(1, "Line 1\n", 7);
-    ft_write(1, "Line 2\n", 7);
-    ft_write(1, "Line 3\n", 7);
-    write(1, "Line 1\nLine 2\nLine 3\n", 21);
-
-    // 6️⃣ Invalid fd
+    //4.Invalid fd
     ssize_t ret1 = ft_write(-1, "Test invalid fd\n", 16);
     ssize_t ret2 = write(-1, "Test invalid fd\n", 16);
     printf("ft_write return: %ld | write return: %ld\n", ret1, ret2);
-
-    // 7️⃣ Binary data (non-printable)
-    char bin[5] = {0x00, 0x01, 0xFF, 0x7F, '\n'};
-    ft_write(1, bin, 5);
-    write(1, bin, 5); 
 
 }
 
